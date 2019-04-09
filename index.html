@@ -9,6 +9,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=0.75, maximum-scale=0.75, minimum-scale=0.75, user-scalable=no, minimal-ui">
 	<link rel="shortcut icon" type="image/svg" href="./favicon.svg">
 	<link rel="stylesheet" href="style.css">
+	<style>
+	#alert {
+			text-align: center;
+			font-size: 1.75em;
+			font-style: italic;
+			margin-bottom: 3%;
+	}
+	</style>
 </head>
 
 <body>
@@ -17,6 +25,9 @@
 	<h3 style="text-align: center;">on 15.04.2019</h3>
 	<h3 style="text-align: center;">at 3pm</h3>
 	<h4 style="text-align: center;">recommendations can be entered below</h4>
+	<div id="alert"> 
+don't cosider joining if you're not going to sing along!</div> 
+
 	<img style="display: block; margin: auto;" src="./fun.gif" alt="fun" />
 	<div style="display: block; width: 320px; margin: auto;">
 		<label>
@@ -27,7 +38,14 @@
 	<script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
 	<script type="text/javascript">
 		(function(){
-      emailjs.init("user_eqZ1Cf1DJSFXWNhrUEXU3");
+			emailjs.init("user_eqZ1Cf1DJSFXWNhrUEXU3");
+			
+			let change = true;
+			let alert = window.document.querySelector("#alert");
+			setInterval(function() {
+				alert.style.color = change ? "red" : "white"
+				change = !change;
+			}, 500);
 	 })();
 	 
 		function sendMail() {
