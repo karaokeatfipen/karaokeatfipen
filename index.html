@@ -48,11 +48,14 @@
 	 })();
 	 
 		function sendMail() {
-			if (window.document.querySelector("#songName").value !== "") {
-				if (localStorage.getItem("basicAuth") === null) {
-					console.log('you wished your song. should be fine like that!')
-					localStorage.setItem("basicAuth", true);
-					let message = window.document.querySelector("#songName").value;
+			let songName = window.document.querySelector("#songName").value;
+			if (songName !== "") {
+				let counter = parseInt(localStorage.getItem("basicAuth")) || 0;
+				if (counter < 3)  {
+					console.log(songName + " was your wish.");
+					console.log(2-counter + " wishes left.");
+					localStorage.setItem("basicAuth", counter + 1);
+					let message = songName;
 					let service_id = "gmail";
 					let template_id = "song";
 					emailjs.send(service_id, template_id, {message_html: message});
