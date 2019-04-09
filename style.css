@@ -1,11 +1,11 @@
 *,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: "Comic Sans MS";
+  padding: 0!important;
+  margin: 0!important;
+  font-family: "Comic Sans MS"!important;
 }
 
 body {
-  background: black;
-  color: white;
+  background: black!important;
+  color: white!important;
 }

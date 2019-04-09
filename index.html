@@ -6,6 +6,7 @@
 	<meta charset="utf-8">
 	<title>Karaoke night @ fipen</title>
 	<meta name="description" content="Karaoke night @ fipen">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="shortcut icon" type="image/svg" href="./favicon.svg">
 	<link rel="stylesheet" href="style.css">
 </head>
@@ -19,7 +20,7 @@
 	<img style="display: block; margin: auto;" src="./fun.gif" alt="fun" />
 	<div style="display: block; width: 250px; margin: auto;">
 		<label style="text-align: center">
-		song really want to sing:</label>
+		song I really want to sing:</label>
 		<input type="text" id="songName" placeholder="artist - trackname" style="width: 150px;" />
 		<input type="button" id="button_send" value="send" click="sendMail()">
 	</div>
@@ -37,7 +38,7 @@
 			emailjs.send(service_id, template_id, message);
 		}
 	</script>
-	<script src="scripts.js"></script>
+
 </body>
 
 </html>
