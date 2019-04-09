@@ -28,7 +28,7 @@
 	<h4 style="text-align: center;">recommendations can be entered below</h4>
 	<div id="alert">don't consider joining if you're not going to sing along</div>
 	<img style="display: block; margin: auto;" src="./fun.gif" alt="fun" />
-	<div style="display: block; width: 320px; margin: auto;">
+	<div id="recommendation" style="display: block; width: 320px; margin: auto;">
 		<label>
 			a song I really want to sing:</label>
 		<input type="text" id="songName" placeholder="artist - trackname" style="width: 175px;" />
@@ -38,7 +38,10 @@
 	<script type="text/javascript">
 		(function(){
 			emailjs.init("user_eqZ1Cf1DJSFXWNhrUEXU3");
-			
+			let counter = parseInt(localStorage.getItem("basicAuth")) || 0
+			if (counter === 3) {
+				window.document.querySelector("#recommendation").style.display = "none";
+			}
 			let change = true;
 			let alert = window.document.querySelector("#alert");
 			setInterval(function() {
@@ -59,6 +62,11 @@
 					let service_id = "gmail";
 					let template_id = "song";
 					emailjs.send(service_id, template_id, {message_html: message});
+					if (counter === 2) {
+						window.document.querySelector("#recommendation").style.display = "none";
+					}
+				} else {				
+					window.document.querySelector("#recommendation").style.display = "none";
 				}
 				window.document.querySelector("#songName").value = "";	
 			}
