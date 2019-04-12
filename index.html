@@ -40,10 +40,6 @@
 	<script type="text/javascript">
 		(function(){
 			emailjs.init("user_eqZ1Cf1DJSFXWNhrUEXU3");
-			let counter = parseInt(localStorage.getItem("basicAuth")) || 0
-			if (counter === 3) {
-				window.document.querySelector("#recommendation").style.display = "none";
-			}
 			let change = true;
 			let alert = window.document.querySelector("#alert");
 			setInterval(function() {
@@ -55,20 +51,10 @@
 		function sendMail() {
 			let songName = window.document.querySelector("#songName").value;
 			if (songName !== "") {
-				let counter = parseInt(localStorage.getItem("basicAuth")) || 0;
-				if (counter < 3)  {
-					window.document.querySelector("#wishes").innerHTML = songName + " was your wish." + 2-counter + " wishes left."
-					localStorage.setItem("basicAuth", counter + 1);
 					let message = songName;
 					let service_id = "gmail";
 					let template_id = "song";
 					emailjs.send(service_id, template_id, {message_html: message});
-					if (counter === 2) {
-						window.document.querySelector("#recommendation").style.display = "none";
-					}
-				} else {				
-					window.document.querySelector("#recommendation").style.display = "none";
-				}
 				window.document.querySelector("#songName").value = "";	
 			}
 		}
