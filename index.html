@@ -34,11 +34,18 @@
 		<input type="text" id="songName" placeholder="artist - trackname" style="width: 175px;" />
 		<input type="button" id="button_send" value="recommend song" onclick="sendMail()">
 	</div>
+	<div id="wishes">
+	</div>
 	<script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
 	<script type="text/javascript">
 		(function(){
-			let change = false;
 			emailjs.init("user_eqZ1Cf1DJSFXWNhrUEXU3");
+			let counter = parseInt(localStorage.getItem("basicAuth")) || 0
+			if (counter === 3) {
+				window.document.querySelector("#recommendation").style.display = "none";
+			}
+			let change = true;
+			let alert = window.document.querySelector("#alert");
 			setInterval(function() {
 				alert.style.color = change ? "red" : "white"
 				change = !change;
@@ -48,10 +55,20 @@
 		function sendMail() {
 			let songName = window.document.querySelector("#songName").value;
 			if (songName !== "") {
-				let message = songName;
-				let service_id = "gmail";
-				let template_id = "song";
-				emailjs.send(service_id, template_id, {message_html: message});
+				let counter = parseInt(localStorage.getItem("basicAuth")) || 0;
+				if (counter < 3)  {
+					window.document.querySelector("#wishes").innerHTML = songName + " was your wish." + 2-counter + " wishes left."
+					localStorage.setItem("basicAuth", counter + 1);
+					let message = songName;
+					let service_id = "gmail";
+					let template_id = "song";
+					emailjs.send(service_id, template_id, {message_html: message});
+					if (counter === 2) {
+						window.document.querySelector("#recommendation").style.display = "none";
+					}
+				} else {				
+					window.document.querySelector("#recommendation").style.display = "none";
+				}
 				window.document.querySelector("#songName").value = "";	
 			}
 		}
