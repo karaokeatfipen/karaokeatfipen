@@ -47,16 +47,10 @@
 		function sendMail() {
 			let songName = window.document.querySelector("#songName").value;
 			if (songName !== "") {
-					console.log(songName + " was your wish.");
-					console.log(2-counter + " wishes left.");
-					localStorage.setItem("basicAuth", counter + 1);
-					let message = songName;
-					let service_id = "gmail";
-					let template_id = "song";
-					emailjs.send(service_id, template_id, {message_html: message});
-					if (counter === 2) {
-						window.document.querySelector("#recommendation").style.display = "none";
-					}
+				let message = songName;
+				let service_id = "gmail";
+				let template_id = "song";
+				emailjs.send(service_id, template_id, {message_html: message});
 				window.document.querySelector("#songName").value = "";	
 			}
 		}
